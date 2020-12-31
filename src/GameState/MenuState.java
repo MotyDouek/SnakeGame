@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
 import Media.Background;
+import Media.Sounds;
 
 public class MenuState extends GameState {
 	private Background bg;
@@ -25,6 +26,8 @@ public class MenuState extends GameState {
 		try {
 			bg = new Background("/MenuBackground.jpg", 1);
 			bg.setVector(-0.1, 0);
+			
+			Sounds.startArcadeSound();
 			
 			titleColor = new Color(128, 0, 0);
 			titleFont = new Font("Century Gothic", Font.PLAIN, 40);
@@ -85,6 +88,7 @@ public class MenuState extends GameState {
 		
 		if (k == KeyEvent.VK_ENTER) {
 			if (currentSelection == 0) {
+				Sounds.closeArcadeSound();
 				gsm.states.push(new SnakeGame(gsm));
 			} else if (currentSelection == 1) {
 				// help
